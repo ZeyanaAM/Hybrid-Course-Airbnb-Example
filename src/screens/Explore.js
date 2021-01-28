@@ -1,40 +1,37 @@
 import React from 'react';
+import {useState} from 'react';
 import {TextInput, StyleSheet, View} from 'react-native';
 import {Listings} from '../components/Listings';
 import {Map} from '../components/Map';
 import {SearchBar} from '../components/SearchBar';
+import {SeeMoreListings} from '../components/SeeMoreListings';
 
 const Explore = () => {
+  const [displayMap, setDisplayMap] = useState(true);
+
   return (
     <>
-      <Map />
-      <SearchBar />
-      <Listings />
+      {displayMap ? (
+        <>
+          <Map />
+          <SearchBar />
+          <SeeMoreListings
+            showListings={() => {
+              setDisplayMap(false);
+              console.log('disply');
+            }}
+          />
+        </>
+      ) : (
+        <Listings
+          hideListings={() => {
+            setDisplayMap(true);
+            console.log('hello');
+          }}
+        />
+      )}
     </>
   );
 };
 
 export default Explore;
-
-const styles = StyleSheet.create({
-  cardShadow: {
-    borderRadius: 25,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-
-    position: 'absolute',
-    top: 60,
-    width: '86%',
-    height: 50,
-    marginHorizontal: '7%',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-  },
-});

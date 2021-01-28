@@ -12,21 +12,13 @@ export const Map = () => {
   const renderListingMarker = (marker) => {
     return (
       <Marker coordinate={marker.coordinate} key={marker.id}>
-        <View style={styles.cardShadow}>
-          <View
-            style={{
-              width: 50,
-              height: 30,
-              alignItems: 'center',
-              backgroundColor: 'white',
-              padding: 5,
-              borderRadius: 20,
-            }}>
-            <AppText style={{fontSize: 16, fontWeight: '500'}}>
-              {marker.price}
-            </AppText>
-          </View>
+        {/* <View style={styles.cardShadow}> */}
+        <View style={styles.marker}>
+          <AppText style={{fontSize: 16, fontWeight: '500'}}>
+            {marker.price}
+          </AppText>
         </View>
+        {/* </View> */}
       </Marker>
     );
   };
@@ -48,8 +40,25 @@ export const Map = () => {
 
 const styles = StyleSheet.create({
   map: {
-    height: 500,
+    // height: 500,
+    flex: 1,
     width: '100%',
+  },
+  marker: {
+    width: 50,
+    height: 30,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    padding: 5,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 1,
+      height: 1,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   cardShadow: {
     borderRadius: 20,
